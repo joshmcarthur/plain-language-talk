@@ -101,7 +101,6 @@ A project to make legislative text accessible to everyone using AI, specifically
 
 ![bg right contain](./images/legislation-after.png)
 
-
 <!--
 Speaker Notes:
 - This is what we built.
@@ -113,10 +112,10 @@ Speaker Notes:
 
 ## Why Legislation is a Perfect AI Problem
 
--   **Lots of text:** There's a good amount of text to work with.
--   **Structured:** Legislation has a predictable, parseable structure (parts/subparts, clauses, provisions)
--   **Value:** Significant social and democratic value of making law accessible.
--   **Complex:** It's a genuinely hard problem with lots of opportunities to enrich content.
+- **Lots of text:** There's a good amount of text to work with.
+- **Structured:** Legislation has a predictable, parseable structure (parts/subparts, clauses, provisions)
+- **Value:** Significant social and democratic value of making law accessible.
+- **Complex:** It's a genuinely hard problem with lots of opportunities to enrich content.
 
 <!--
 Speaker Notes:
@@ -129,7 +128,6 @@ Speaker Notes:
 ---
 
 ## Our Content Pipeline
-
 
 <pre class="mermaid" style="text-align: center;">
 graph TD
@@ -156,9 +154,9 @@ Speaker Notes:
 
 ## Stage 1: Ingestion
 
--   **Collation:** Parse source XML into a consistent format.
--   **Structuring:** Create YAML frontmatter to hold metadata for each document.
--   **Content:** Convert XML to clean HTML using XSLT.
+- **Collation:** Parse source XML into a consistent format.
+- **Structuring:** Create YAML frontmatter to hold metadata for each document.
+- **Content:** Convert XML to clean HTML using XSLT.
 
 </div>
 
@@ -166,22 +164,22 @@ Speaker Notes:
 
 ```yaml
 ---
-label: '88'
+label: "88"
 title: Making an application
-full_title: '88: Making an application'
+full_title: "88: Making an application"
 layout: provision
 law_context: act
 id: DLM233858
 act_id: DLM230264
 act_title: Resource Management Act 1991
 dates:
-  as_at: '2025-04-05'
-  assent: '1991-07-22'
-  first_valid: '2007-09-18'
-  year: '1991'
-  year_imprint: '2025'
+  as_at: "2025-04-05"
+  assent: "1991-07-22"
+  first_valid: "2007-09-18"
+  year: "1991"
+  year_imprint: "2025"
 part_id: DLM233845
-part_label: '6'
+part_label: "6"
 part_title: Resource consents
 crosshead_id: DLM233857
 crosshead_title: Application for resource consent
@@ -191,7 +189,6 @@ crosshead_title: Application for resource consent
 
 </div>
 </div>
-
 
 <!--
 Speaker Notes:
@@ -203,11 +200,13 @@ Speaker Notes:
 ---
 
 ###### Stage 2: AI Content Enrichment:
+
 ### Plain Language Generation
 
 ![bg right:33% contain](./images/legislation-after.png)
 
 ```yaml
+---
 plain_language_summary: "You can apply to the consent authority for a resource consent.
   \nYou must fill out the application form and give them the information they need.
   ..."
@@ -224,8 +223,8 @@ plain_language_metadata:
   prompt:
     id: ackama.plainlanguageservice.plainlanguage-20250516:v1
 plain_language_title: How to apply for permission to use natural resources
+---
 ```
-
 
 <!--
 Speaker Notes:
@@ -236,43 +235,43 @@ Speaker Notes:
 - All of this AI-generated data is written back into the YAML frontmatter.
 -->
 
-
 ---
 
 ###### Stage 2: AI Content Enrichment:
+
 ### Featured Provision Extraction
 
-![bg right contain](./images/featured.png)
+![bg right:33% contain](./images/featured.png)
 
 ```yaml
+...
 featured:
-- id: DLM231905
-- id: DLM231907
-- id: DLM231918
-- id: DLM231974
-- id: DLM231978
-- id: DLM232500
-- id: DLM232560
-- id: DLM232574
+  - id: DLM231905
+  - id: DLM231907
+  - id: DLM231918
+  - id: DLM231974
+  - id: DLM231978
+  - id: DLM232500
+  - id: DLM232560
+  - id: DLM232574
 ```
-
-
-
 
 ---
 
 ###### Stage 2: AI Content Enrichment:
+
 ### Topic Classification
 
 ```yaml
+...
 topics:
-- name: Environment and resources
-  categories:
-  - name: Town planning
-  - name: Conservation
-- name: Māori affairs
-  categories:
-  - name: Māori land
+  - name: Environment and resources
+    categories:
+      - name: Town planning
+      - name: Conservation
+  - name: Māori affairs
+    categories:
+      - name: Māori land
 ```
 
 ![Topics](./images/legislation-topics.png)
@@ -288,15 +287,13 @@ Speaker Notes:
 - All of this AI-generated data is written back into the YAML frontmatter.
 -->
 
-
 ---
 
 ## Stage 3: Build & Deploy
 
--   **Static Site Build:** `Astro` builds the website from the processed HTML files.
--   **Search Index:** `Pagefind` creates a client-side search index.
--   **Automation:** GitHub Actions runs the entire pipeline on a schedule or trigger.
--   **Deployment:** Pushes the final site to `S3` with a `CloudFront` CDN.
+- **Static Site Build:** `Astro` builds the website from the processed HTML files.
+- **Search Index:** `Pagefind` creates a client-side search index.
+- **Deployment:** Pushes the final site to `S3` with a `CloudFront` CDN.
 
 <!--
 Speaker Notes:
@@ -309,10 +306,14 @@ Speaker Notes:
 ---
 
 ## Stage 4: Automate legislation updates
--   RSS Monitoring
--   Pull request workflow
--   mdev environments
--   Labeling workflow
+
+- RSS Monitoring
+- Pull request workflow
+- mdev environments
+- Labeling workflow
+
+![bg right cover vertical](./images/daily.png)
+![bg cover](./images/pr.png)
 
 <!--
 -   **RSS Monitoring:** GitHub Actions monitors the Legislation site for changes
@@ -342,15 +343,12 @@ Speaker Notes:
 
 ## Challenge: Static Site Generation
 
-
 <div class="columns">
-
 
 <figure>
 <img src="./images/jekyll-build.png" style="max-width: 100%;" />
 <figcaption>Jekyll build time: ~30 minutes + 10 minute S3 sync</figcaption>
 </figure>
-
 
 <figure style="margin-top: 25%;">
   <img src="./images/astro-build.png" style="max-width: 100%;" />
@@ -358,8 +356,6 @@ Speaker Notes:
 </figure>
 
 </div>
-
-
 
 <!--
 Speaker Notes:
@@ -378,8 +374,8 @@ Speaker Notes:
 
 Quality vs. Cost.
 
--   `Claude`: Excellent results, but expensive at scale.
--   `Llama`: Much cheaper, but required more prompt engineering and fine-tuning to match quality.
+- `Claude`: Excellent results, but expensive at scale.
+- `Llama`: Much cheaper, but required more prompt engineering and fine-tuning to match quality.
 
 ![bg right contain](./images/aws.png)
 
@@ -396,9 +392,9 @@ Speaker Notes:
 
 How do you quality-assure the output of an LLM on sensitive legal text?
 
--   Manual review is difficult to scale with more content
--   We prototyped multilingual support, but had no way to QA the translations in a sustainable way
--   Detailed QA remains a largely unsolved problem for us
+- Manual review is difficult to scale with more content
+- We prototyped multilingual support, but had no way to QA the translations in a sustainable way
+- Detailed QA remains a largely unsolved problem for us
 
 <!--
 Speaker Notes:
@@ -423,8 +419,8 @@ Speaker Notes:
 
 ## Embeddings
 
--   **The Plan:** Generate vector embeddings for all of our content.
--   This allows us to perform **semantic search** and **conceptual similarity** lookups, not just keyword search.
+- **The Plan:** Generate vector embeddings for all of our content.
+- This allows us to perform **semantic search** and **conceptual similarity** lookups, not just keyword search.
 
 <!--
 Speaker Notes:
@@ -436,6 +432,7 @@ Speaker Notes:
 ---
 
 ###### Embeddings:
+
 #### Use Case 1: Better Summaries with RAG
 
 We can improve Llama's summarization by providing examples of "good" summaries from Claude.
@@ -456,13 +453,14 @@ Speaker Notes:
 ---
 
 ###### Embeddings:
+
 #### Use Case 2: Smarter Content Discovery
 
 Embeddings will power a new generation of features:
 
--   Automated FAQ Extraction: Find clusters of related provisions and generate Q&A sections.
--   "Related Legislation" Blocks: Go beyond simple keyword links and find other laws that are conceptually related.
--   Building Hierarchies: Automatically group topics and categories into a more intelligent structure.
+- Automated FAQ Extraction: Find clusters of related provisions and generate Q&A sections.
+- "Related Legislation" Blocks: Go beyond simple keyword links and find other laws that are conceptually related.
+- Building Hierarchies: Automatically group topics and categories into a more intelligent structure.
 
 <!--
 Speaker Notes:
@@ -494,9 +492,9 @@ Speaker Notes:
 
 **Josh McArthur**
 
--   Website: plainlanguagelaw.ackama.com / plainlanguagelaw.nz
--   GitHub: github.com/joshmcarthur
--   My website: joshmcarthur.com
+- Website: plainlanguagelaw.ackama.com / plainlanguagelaw.nz
+- GitHub: github.com/joshmcarthur
+- My website: joshmcarthur.com
 
 **Questions?**
 
