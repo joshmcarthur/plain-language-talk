@@ -110,7 +110,7 @@ Speaker Notes:
 
 ---
 
-## Why Legislation is a Perfect AI Problem
+## Why Legislation is a great AI Problem
 
 - **Lots of text:** There's a good amount of text to work with.
 - **Structured:** Legislation has a predictable, parseable structure (parts/subparts, clauses, provisions)
